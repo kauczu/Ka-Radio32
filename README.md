@@ -1,9 +1,9 @@
 ## STATE
-Release 2.3 R0 Stable  
-ESP-IDF v3.3  
+Based on Release 2.3 R0 Stable  
 
-See also the version for ESP-IDF v4.4 at    
-   https://github.com/karawin/KaRadio32_4
+-----------
+
+-----------
 
 Works on any esp32 board.  
 See the boards directory for a list of pre-configured boards.  
