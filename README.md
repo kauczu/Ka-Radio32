@@ -2,7 +2,11 @@
 Based on Release 2.3 R0 Stable  
 
 -----------
+It is wrover cpu friendly fork of KaRadio32.
 
+Major changes to original Karawin's version:
+- Webpage: changed structure of tabs, fixed WiFi configuration section (was messy on mobile devices)
+- boards: added configuration based on standard_psram.csv including default settings for vs1053, ST7735	modules and other useful settings
 -----------
 
 Works on any esp32 board.  
