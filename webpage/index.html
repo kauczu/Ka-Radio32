@@ -55,7 +55,7 @@
 <!--			<a href="https://github.com/PiotrSperka/ESP8266-WebRadio" style="font-size:8px" target="_blank">From PiotrSperka</a> -->
 			</div>
 			<div id="HEAD">
-			<span class="bold4"><span id="meta">Karadio32</span></span>
+			<span class="bold4"><span id="meta">Karadio32 mod</span></span>
 			</div>	
 </div>	
 			
@@ -65,7 +65,7 @@
 				<input type="radio" name="tabs" id="tab1" checked />
 				<label for="tab1">Radio</label>
 				<div id="tab-content1" class="tab-content">
-				<h1>Stations control &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox"  id="aplay"  onClick="autoplay()"/> AutoPlay</h1>
+				<h1>Stations control &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input title="Autoplay selected station on boot" type="checkbox"  id="aplay"  onClick="autoplay()"/> AutoPlay</h1>
 					<p>
 					<select id="stationsSelect" onchange="Select()" >
 					</select></p>
@@ -92,7 +92,7 @@
 					 &nbsp;&nbsp;<span id="vol1_span"></span><br/>
 					<input type="range" id="vol1_range" name="vol1"  onChange="onRangeVolChange(this.value,true)"  min=0 max=254 style="height:25px;">
 					</p>				
-				 <h1>Station No <span id="curst"></span>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" checked  id="Full"  onclick="full()"/> Full</h1>				  
+				 <h1>Station No <span id="curst"></span>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input title="Check for full station info. Uncheck to show Name and URL only" type="checkbox" checked  id="Full"  onclick="full()"/> Full</h1>				  
 					<p><span class="bold1" >Name: </span><span id="name"></span>&nbsp;&nbsp;<img id="icon" src=""  height="16px" width="16px"> </p>
 					<p><span id="ldescr"> <span class="bold1">Description: </span><span id="descr"></span></span></p>
 					<p><span id="lnot1"><span class="bold1">Notice: </span><span id="not1"></span> <span id="not2"></span></span></p>
@@ -100,7 +100,7 @@
 					<p><span id="lurl"><span class="bold1">URL: </span><a  target="_blank" id="url2"> <span id="url1"></span></a></span></p>
 					<p><span id="lbitr"><span class="bold1">Bitrate: </span><span id="bitr"></span></span></p>
 							
-				 <h1>Monitoring</h1>	
+				 <h1 title="Play stream in local browser">Monitoring</h1>	
 				 <p>
 				 <!-- Play icon by Icons8 -->
 <img class="icon icons8" width="40" height="40" title="Play monitoring" onClick="mplay()" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAACBElEQVRoge3XPWsUQRgH8C0sLFP6AfwAfoAUqcXszG5QCw8sIljkCkGFZGd33RwJFz3FgC9JIWgTTRGMx2VeLkQOtVhOsDgF30AlRUCOaC6bEI/T87EICxGieTFhGHx+8PT/P+zOPGNZCCGEEEII7TcaTXfozrAnCBOKMFEwvpDjy9j2OBBfLNn9pWxXVDmgO9OuOL6M+8ZqkB2vtSiTLRqo+e4Bfkx3rh1zfBlnx19BQTZguFiHM6PPVwnjbScsx9TjR3Tn27aNRdKJphYgM/I0IR5vu4GaOHqRH9Kdc0ubFUnHu/8JTuQerxAmmoSJsCuqHNSd94/+VqQgG3BFLMH5u+/ADcvfqC8XbW8mozvzprYqks7IzBfou11rEiZ+OKF6081Knbqz/2a7RdIZelSH3uvVxPY4uKFSdn/xsO4OlmXtvMjGA+FU/klCmGw5obqp/ULdbZF0BiY+wvHBuVXqy0TrhbonRXIGF4mmFiCTf7ZsM/HdDcq3jPu0hot16B2trhDG2z3hrHk/+2X+FbJj6/uYE6i3Rh6/F+69h55wdo36yswL0Z+ch5NDlYQw0SSBGDRuRck9/Aynr8bLxONt91L5gXFLY760CGdvvFhbX+NV1cA1/iWcu/ManEC1KBMfjH1YEU/8pEw2jH7qEiYUZfKa9gvtXxlfACGEEEII/T9+AR8nzQFJqsL+AAAAAElFTkSuQmCC">&nbsp;
@@ -130,7 +130,7 @@
 					&nbsp;<input type="button" value="Start"  onClick="startWake()"><input type="button" value="Stop"  onClick="stopWake()">
 					 &nbsp;&nbsp; In: <span id="wminutes">0</span> Sec. 
 				</p>
-				<h1>Instant play &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button"   onClick="editInstantStation()" value="Add & Edit"></h1>
+				<h1 title="Play radio station directly, without adding it to playlist">Instant play &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button"   onClick="editInstantStation()" value="Add & Edit"></h1>
 					<p>
 					<span class=bold1>Full URL: </span>
 					<input type=text style="width:350px;" id=instant_URL name=URL onkeyup="parseInstantURL()" onmouseup="parseInstantURL()"><br/>
@@ -175,7 +175,7 @@
 				</li>
 				<li>
 					<input type="radio" name="tabs" id="tab3" />
-					<label for="tab3">Setting</label>
+					<label for="tab3">Settings</label>
 					<div id="tab-content3" class="tab-content">
 					<h1>Sound Setting </h1>
 						<p><span class="bold">Output: </span>
@@ -213,29 +213,46 @@
 						</p>
 						<h1>Wifi & Network &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Validate" onclick="valid()" /></h1>
 						<p>
-						<span class="bold">AP SSID:</span>
-						<input  id="ssid" type="text" /> <input  id="ssid2" type="text" />
+						<span class="bold">PRIMARY AP SSID:</span>
+						<input  id="ssid" type="text" />
 						<br/>
 						<span class="bold"> AP PASSWORD:</span>
-						<input id="passwd" type="text"  /> <input id="passwd2" type="text"  />
+						<input id="passwd" type="text"  />
 						</p>
 						<p>
 						<span class="bold"> Mac Address:</span><span id="Mac"></span><br/>
 						<span class="bold"> Use DHCP:</span>
-						1:<input id="dhcp" type=checkbox onclick="clickdhcp()" />
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						2:<input id="dhcp2" type=checkbox onclick="clickdhcp2()" /><br/>
+						<input id="dhcp" type=checkbox onclick="clickdhcp()" /><br/>
 						<span class="bold">Ip:</span>
 						<input  id="ip" type="text" oninput="chkip(this)" />
+						<br/>
+						<span class="bold">Mask:</span>
+						<input id="mask" type="text" oninput="chkip(this)" value="255.255.255.0" /><br/>
+						<span class="bold">Gateway:</span>
+						<input id="gw" type="text" oninput="chkip(this)" />
+							</p>
+								<br/><br/>
+						<p>
+						<span class="bold">SEC. AP SSID:</span>
+						<input  id="ssid2" type="text" />
+						<br/>
+						<span class="bold"> AP PASSWORD:</span>
+						<input id="passwd2" type="text"  />
+						</p>
+						<p>
+						<span class="bold"> Mac Address:</span><span id="Mac"></span><br/>
+						<span class="bold"> Use DHCP:</span>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<input id="dhcp2" type=checkbox onclick="clickdhcp2()" /><br/>
+						<span class="bold">Ip:</span>
 						<input  id="ip2" type="text" oninput="chkip(this)" />
 						<br/>
 						<span class="bold">Mask:</span>
-						<input id="mask" type="text" oninput="chkip(this)" value="255.255.255.0" />
 						<input id="mask2" type="text" oninput="chkip(this)" value="255.255.255.0" /><br/>
 						<span class="bold">Gateway:</span>
-						<input id="gw" type="text" oninput="chkip(this)" />
 						<input id="gw2" type="text" oninput="chkip(this)" />
-							</p>						
+							</p>												
 					<h1>Other options &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Validate" onclick="wifi(2)" /></h1>
 						<p>						
 						<span class="bold">User Agent:</span>
@@ -247,14 +264,27 @@
 						<input id="tzo" type="text" value="" />	
 						<span class="bold">Suggested: </span><span class="bold" id="atzo"> </span><br/>						
 						</p>
+					</div>
+				</li>
+				<li>
+					<input type="radio" name="tabs" id="tab4" />
+					<label for="tab4">Update</label>
+					<div id="tab-content4" class="tab-content">
 					<h1>Update to: <span id="newrelease"></span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<input type=button value="Update now" onclick="upgrade()" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+					<!-- <input type=button value="Update now" onclick="upgrade()" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
 					<span id="updatefb"></span><br/>	</h1>
 					<p>
 						<span class="bold4" id="Version"></span><br/>
 						<span class="bold4">To update or reload the current release:</span><br/><br/>		
 						<input type=button value="Update now" onclick="upgrade()" /><br/>	
-						<span class="bold4" id="Infos"></span><br/>
+						</p>
+					</div>
+				</li>
+				<li>
+					<input type="radio" name="tabs" id="tab5" />
+					<label for="tab5">Infos</label>
+					<div id="tab-content5" class="tab-content">
+					<span class="bold4" id="Infos"></span><br/>
 						</p>
 						<h1>History:</h1><BR/>
 						<input type=button value="Read the history" onclick="checkhistory()" /><br/>
