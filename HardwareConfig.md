@@ -405,7 +405,7 @@ To make build:
 1. Go to MSYS32 window and navigate to `~/esp/Ka-Radio32-master/`
 2. Type : `make`
    
-After you need the following compiled binaries:
+You need the following compiled binaries:
 ```
 /esp/Ka-Radio32-master/build/bootloader/bootloader.bin 
 /esp/Ka-Radio32-master/build/KaRadio32.bin 
