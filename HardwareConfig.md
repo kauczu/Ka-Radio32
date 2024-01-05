@@ -12,26 +12,32 @@ A csv file is interpreted by an utility to generate a bin file that must be flas
 ---------------
 Toolchain Setup
 --------------------
-The quick setup is to download the Windows all-in-one toolchain & MSYS2 zip file from dl.espressif.com. See  
+The quick setup is to download the Windows all-in-one toolchain & MSYS2 zip file from dl.espressif.com. 
+Get:
+- https://dl.espressif.com/dl/esp32_win32_msys2_environment_and_toolchain_idf3-20201104.zip
+- https://dl.espressif.com/dl/esp-idf/releases/esp-idf-v3.3.5.zip
+  
+See  https://docs.espressif.com/projects/esp-idf/en/release-v3.3/get-started/windows-setup-scratch.html#configure-windows-toolchain-from-scratch
 
-https://docs.espressif.com/projects/esp-idf/en/release-v3.3/get-started/windows-setup-scratch.html#configure-windows-toolchain-from-scratch
-
-- Unzip the zip file to C:\ (or some other location, but this guide assumes C:\) and it will create an msys32 directory with a pre-prepared environment.
-- Open a MSYS2 MINGW32 terminal window by running C:\msys32\mingw32.exe. Create a directory named "esp" that is a default location to develop ESP32 applications. To do so, run the following shell command: mkdir -p ~/esp
-- Type : cd ~/esp to move the newly created directory. If there are no error messages you are done with this step.
-- Type : git clone -b v3.1.2 --recursive https://github.com/espressif/esp-idf.git
+- Unzip the first zip file to C:\ (or some other location, but this guide assumes C:\) and it will create an msys32 directory with a pre-prepared environment.
+- Open a MSYS2 MINGW32 terminal window by running C:\msys32\mingw32.exe. Create a directory named "esp" that is a default location to develop ESP32 applications. To do so, run the following shell command: ```mkdir -p ~/esp```
+- Type : ```cd ~/esp``` to move the newly created directory. If there are no error messages you are done with this step.
+- ~~~Type : git clone -b v3.1.2 --recursive https://github.com/espressif/esp-idf.git~~~ - this is time consuming method, and often ends by error
+- Unzip second zip (esp-idf) to C:/msys32/home/"your-user-name/esp/esp-idf folder
 - Create a new script file in C:/msys32/etc/profile.d/ directory. Name it export_idf_path.sh
 Identify the path to ESP-IDF directory. It is specific to your system configuration and may look something like C:\msys32\home\"your-user-name"\esp\esp-idf
-Add this to the above created script file: export IDF_PATH="C:/msys32/home/"your-user-name/esp/esp-idf"
+Add this to the above created script file: ```export IDF_PATH="C:/msys32/home/"your-user-name/esp/esp-idf"```
 Save the script file.
-- Close MSYS2 window and open it again. Check if IDF_PATH is set, by typing: printenv IDF_PATH
+- Close MSYS2 window and open it again. Check if IDF_PATH is set, by typing: ```printenv IDF_PATH```
 The path previously entered in the script file should be printed out.
-- Type : pip install --upgrade setuptools  
-- Type : python -m pip install --upgrade pip
-- Type : pip install future
-- Type : pacman -S mingw-w64-i686-python2-cryptography
-- Type : pip install cryptography
-- Place the Ka-Radio32-master files in "your-user-name"/esp folder. Find it at https://github.com/karawin/Ka-Radio32
+- Type : ```python -m pip install --user -r $IDF_PATH/requirements.txt```
+- Type : ```pip install --upgrade setuptools```  
+- Type : ```python -m pip install --upgrade pip```
+- Type : ```pip install future```
+- Type : ```pacman -S mingw-w64-i686-python2-cryptography```
+In case mingw-w64-i686-python2-cryptography not found try mingw-w64-i686-python-cryptography
+- Type : ```pip install cryptography```
+- Place the Ka-Radio32-master files in "your-user-name"/esp folder.
 ---
   
 Second  make sure you have an updated partitions.bin file.  
