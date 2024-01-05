@@ -22,7 +22,7 @@ See  https://docs.espressif.com/projects/esp-idf/en/release-v3.3/get-started/win
 - Unzip the first zip file to C:\ (or some other location, but this guide assumes C:\) and it will create an msys32 directory with a pre-prepared environment.
 - Open a MSYS2 MINGW32 terminal window by running C:\msys32\mingw32.exe. Create a directory named "esp" that is a default location to develop ESP32 applications. To do so, run the following shell command: ```mkdir -p ~/esp```
 - Type : ```cd ~/esp``` to move the newly created directory. If there are no error messages you are done with this step.
-- ~~~Type : git clone -b v3.1.2 --recursive https://github.com/espressif/esp-idf.git~~~ - this is time consuming method, and often ends by error
+- ~~Type : git clone -b v3.1.2 --recursive https://github.com/espressif/esp-idf.git~~ - this is time consuming method, and often ends by error
 - Unzip second zip (esp-idf) to C:/msys32/home/"your-user-name/esp/esp-idf folder
 - Create a new script file in C:/msys32/etc/profile.d/ directory. Name it export_idf_path.sh
 Identify the path to ESP-IDF directory. It is specific to your system configuration and may look something like C:\msys32\home\"your-user-name"\esp\esp-idf
