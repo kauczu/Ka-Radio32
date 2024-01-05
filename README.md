@@ -94,37 +94,9 @@ See : [Hardware configuration partition](HardwareConfig.md)
 For a wrover cpu you need a csv file with psram in the name. Without it, the default configuration will fail.  
 
 ## Build your own
-=======  
-To build your own release if you want to do some improvments, you must install the idf https://github.com/espressif/esp-idf and the toolchain. The esp-idf release is the 3.3.5  
+See : [Hardware configuration partition](HardwareConfig.md)
 
-### ESP-IDF Patch
-Since the 3.3.5 and upper releases there is a bug with CONFIG_SPIRAM_IGNORE_NOTFOUND 
-You need to patch the esp\esp-idf\components\esp32\spiram.c line 128 to  
-```
-esp_spiram_size_t esp_spiram_get_chip_size()
-{
-    if (!spiram_inited) {
-#if CONFIG_SPIRAM_IGNORE_NOTFOUND
-         ESP_EARLY_LOGE(TAG, "SPI RAM not initialized");
-		 return ESP_SPIRAM_SIZE_INVALID;
-#endif		
-		 abort();
-    }
-```
-See https://github.com/espressif/esp-idf/issues/6063#issuecomment-1010899552  
-  
 
-To flash all build output, run 'make flash' or :
-
-```
-python /home/yourhome/esp/esp-idf/components/esptool_py/esptool/esptool.py \
-   --chip esp32 --port com5 --baud 460800 --before default_reset \
-   --after hard_reset write_flash -u --flash_mode dio \
-   --flash_freq 40m --flash_size detect \
-   0x1000 /home/yourhome/esp/Ka-Radio32/build/bootloader/bootloader.bin \
-   0x10000 /home/yourhome/esp/Ka-Radio32/build/KaRadio32.bin \
-   0x8000 /home/yourhome/esp/Ka-Radio32/build/partitions.bin
-```
 ## GPIO Definition 
 The default configuration is given below. It includes an encoder, an IR remote and a LCD or OLED.  
 To add or edit GPIO definitions and add or remove some devices, you may need a hardware configuration file. Some examples are in the boards directory.  
