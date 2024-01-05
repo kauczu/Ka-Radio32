@@ -351,12 +351,8 @@ Save the csv file.
 
 
 ------------------------
-4/ Generating the bin
+4/ Generating the NVS binary
 ------------------------
-Some samples are in the boards directory.   
-
-Build the bin file
-------------------
 1. Place the Ka-Radio32-master files in "your-user-name"/esp folder
 2. Place your modified csv file in the Ka-Radio32-master/boards folder
 
@@ -386,18 +382,57 @@ $
 ```
 
 --------------------
-5/ Flash the bin
+5/ Building KaRadio32
+--------------------
+### ESP-IDF Patch
+Since the 3.3.5 and upper releases there is a bug with CONFIG_SPIRAM_IGNORE_NOTFOUND 
+You need to patch the esp\esp-idf\components\esp32\spiram.c line 128 to  
+```
+esp_spiram_size_t esp_spiram_get_chip_size()
+{
+    if (!spiram_inited) {
+#if CONFIG_SPIRAM_IGNORE_NOTFOUND
+         ESP_EARLY_LOGE(TAG, "SPI RAM not initialized");
+		 return ESP_SPIRAM_SIZE_INVALID;
+#endif		
+		 abort();
+    }
+```
+See https://github.com/espressif/esp-idf/issues/6063#issuecomment-1010899552  
+  
+
+To make build:
+1. Go to MSYS32 window and navigate to `~/esp/Ka-Radio32-master/`
+2. Type : `make`
+   
+After you need the following compiled binaries:
+```
+/esp/Ka-Radio32-master/build/bootloader/bootloader.bin 
+/esp/Ka-Radio32-master/build/KaRadio32.bin 
+/esp/Ka-Radio32-master/build/partitions.bin
+/esp/Ka-Radio32-master/board/build/yourname.bin
+```
+
+--------------------
+6/ Flash the bin
 --------------------
 With ESP DOWNLOAD TOOL   
 ![Screenshoot of download tool](https://raw.githubusercontent.com/karawin/Ka-Radio32/master/images/downloadtool32.jpg)
 
 
-or esptool.py command at address 0x3a2000  
+or esptool.py command 
+```
+KaRadio32.bin at address 0x10000 
+KaRadio32.bin at address 0x1D0000  
+partitions.bin at address 0x8000
+bootloader.bin at address 0x1000
+yourname.bin at address 0x3a2000  
+```
 
 It seems that there is a problem with this ESP DOWNLOAD TOOL for flashing the bin alone.  
 In case of problem, flash it with another bin (bootloader.bin or KaRadio32.bin) 
  
-This binary is to flash one time and on each modification of the csv.
+NVS binary is to flash one time and on each modification of the csv.
 
 Now you can enjoy the standart OTA. No needs to generate your own KaRadio32.bin.
 
