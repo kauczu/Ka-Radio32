@@ -20,23 +20,23 @@ Get:
 See  https://docs.espressif.com/projects/esp-idf/en/release-v3.3/get-started/windows-setup-scratch.html#configure-windows-toolchain-from-scratch
 
 - Unzip the first zip file to C:\ (or some other location, but this guide assumes C:\) and it will create an msys32 directory with a pre-prepared environment.
-- Open a MSYS2 MINGW32 terminal window by running C:\msys32\mingw32.exe. Create a directory named "esp" that is a default location to develop ESP32 applications. To do so, run the following shell command: ```mkdir -p ~/esp```
-- Type : ```cd ~/esp``` to move the newly created directory. If there are no error messages you are done with this step.
+- Open a MSYS2 MINGW32 terminal window by running C:\msys32\mingw32.exe. Create a directory named "esp" that is a default location to develop ESP32 applications. To do so, run the following shell command: `mkdir -p ~/esp`
+- Type : `cd ~/esp` to move the newly created directory. If there are no error messages you are done with this step.
 - ~~Type : git clone -b v3.1.2 --recursive https://github.com/espressif/esp-idf.git~~ - this is time consuming method, and often ends by error
 - Unzip second zip (esp-idf) to C:/msys32/home/"your-user-name/esp/esp-idf folder
 - Create a new script file in C:/msys32/etc/profile.d/ directory. Name it export_idf_path.sh
 Identify the path to ESP-IDF directory. It is specific to your system configuration and may look something like C:\msys32\home\"your-user-name"\esp\esp-idf
-Add this to the above created script file: ```export IDF_PATH="C:/msys32/home/"your-user-name/esp/esp-idf"```
+Add this to the above created script file: `export IDF_PATH="C:/msys32/home/"your-user-name/esp/esp-idf"`
 Save the script file.
-- Close MSYS2 window and open it again. Check if IDF_PATH is set, by typing: ```printenv IDF_PATH```
+- Close MSYS2 window and open it again. Check if IDF_PATH is set, by typing: `printenv IDF_PATH`
 The path previously entered in the script file should be printed out.
-- Type : ```python -m pip install --user -r $IDF_PATH/requirements.txt```
-- Type : ```pip install --upgrade setuptools```  
-- Type : ```python -m pip install --upgrade pip```
-- Type : ```pip install future```
-- Type : ```pacman -S mingw-w64-i686-python2-cryptography```
+- Type : `python -m pip install --user -r $IDF_PATH/requirements.txt`
+- Type : `pip install --upgrade setuptools` 
+- Type : `python -m pip install --upgrade pip`
+- Type : `pip install future`
+- Type : `pacman -S mingw-w64-i686-python2-cryptography`
 In case mingw-w64-i686-python2-cryptography not found try mingw-w64-i686-python-cryptography
-- Type : ```pip install cryptography```
+- Type : `pip install cryptography`
 - Place the Ka-Radio32-master files in "your-user-name"/esp folder.
 ---
   
@@ -362,18 +362,32 @@ Build the bin file
 
 3. Return to the msys32 window and navigate to the Ka-Radio32-master/boards folder
 
-4. Start the command : ./nvs_partition_generator.sh yourname[.csv] to generate build/yourname.bin
+4. Start the command : `./nvs_partition_generator.sh yourname[.csv]` to generate build/yourname.bin
 
 Result :   
-MINGW32 ~/esp/Ka-Radio32-master/boards  
-$ ./nvs_partition_generator.sh modified_adb  
-python ./nvs_partition_gen.py modified_adb.csv build/modified_adb.bin 0x2000  
-done  
+```
+MINGW32 ~/esp/Ka-Radio32-master/boards
+$ ./nvs_partition_generator.sh yourname.csv
+Jump into /home/your-user-name/esp/Ka-Radio32-master/boards directory
 
+Board yourname
+This is the standard configuration for 
+Version:  v1 - Multipage Blob Support Disabled
+NVS binary created: build/yourname.bin
 
-------------
+Minimum NVS Partition Size needed is 0x3000 bytes. Look at this link :
+https://docs.espressif.com/projects/esp-idf/en/latest/api-reference/storage/nvs_partition_gen.html#running-the-utility
+
+For flashing, type :
+ esptool --chip esp32 write_flash 0x3a2000 build/yourname.bin
+
+MINGW32 ~/esp/Ka-Radio32-master/boards
+$
+```
+
+--------------------
 5/ Flash the bin
-------------
+--------------------
 With ESP DOWNLOAD TOOL   
 ![Screenshoot of download tool](https://raw.githubusercontent.com/karawin/Ka-Radio32/master/images/downloadtool32.jpg)
 
